@@ -1,0 +1,219 @@
+/**
+ * ElCamargo Soluções em TI — a folha de estilo do site
+ *
+ * Uma folha só, sem build, sem framework e sem nenhuma requisição externa:
+ * nem fonte do Google, nem ícone de CDN, nem script de terceiro. É a mesma
+ * regra que os nossos produtos seguem, e não faria sentido o site que fala
+ * deles não seguir também.
+ */
+
+:root {
+  --tinta: #16224F;      /* o azul da casa, o mesmo do Lumus */
+  --tinta-fraca: #4A5680;
+  --papel: #FBFAF7;
+  --papel-fundo: #F2F1EC;
+  --linha: #DFDDD5;
+  --destaque: #B4531F;   /* terracota queimado, só para o que é ação */
+  --branco: #FFFFFF;
+  --largura: 940px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 17px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.limite { max-width: var(--largura); margin: 0 auto; padding: 0 22px; }
+
+/* ---------- o topo ---------- */
+header.topo {
+  border-bottom: 1px solid var(--linha);
+  background: var(--papel);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topo .limite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.marca {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--tinta);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.marca span { color: var(--tinta-fraca); font-weight: 400; }
+
+nav.menu { display: flex; gap: 22px; flex-wrap: wrap; }
+nav.menu a {
+  color: var(--tinta-fraca);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+nav.menu a:hover, nav.menu a:focus-visible { color: var(--tinta); border-bottom-color: var(--destaque); }
+nav.menu a[aria-current="page"] { color: var(--tinta); border-bottom-color: var(--tinta); }
+
+/* ---------- a abertura ---------- */
+.abertura { padding: 64px 0 52px; border-bottom: 1px solid var(--linha); }
+.abertura h1 {
+  font-size: 40px;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  margin: 0 0 16px;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.abertura p.linha-fina {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--tinta-fraca);
+  margin: 0;
+  max-width: 58ch;
+}
+
+/* ---------- seções ---------- */
+section { padding: 52px 0; border-bottom: 1px solid var(--linha); }
+section:last-of-type { border-bottom: 0; }
+
+h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--tinta-fraca);
+  font-weight: 700;
+  margin: 0 0 22px;
+}
+h3 { font-size: 22px; margin: 0 0 8px; letter-spacing: -0.3px; }
+
+p { margin: 0 0 16px; max-width: 66ch; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--destaque); }
+a:hover { color: var(--tinta); }
+
+/* ---------- os produtos ---------- */
+.produtos { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.produto {
+  background: var(--branco);
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.produto h3 { margin-bottom: 6px; }
+.produto p { font-size: 16px; color: var(--tinta-fraca); flex-grow: 1; }
+.produto .acoes { margin-top: 18px; display: flex; gap: 16px; flex-wrap: wrap; }
+
+.selo {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+.selo.no-ar { background: #E3EDE4; color: #2C5C36; }
+.selo.fazendo { background: #F2EADC; color: #8A6521; }
+
+/* ---------- a lista de valores ---------- */
+.valores { display: grid; gap: 28px 40px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.valores h3 { font-size: 18px; }
+.valores p { font-size: 16px; color: var(--tinta-fraca); }
+
+/* ---------- botões ---------- */
+.botao {
+  display: inline-block;
+  background: var(--tinta);
+  color: var(--branco);
+  text-decoration: none;
+  padding: 11px 22px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.botao:hover, .botao:focus-visible { background: var(--destaque); color: var(--branco); }
+.botao.vazio {
+  background: transparent;
+  color: var(--tinta);
+  border: 1px solid var(--linha);
+}
+.botao.vazio:hover { border-color: var(--tinta); background: transparent; color: var(--tinta); }
+
+/* ---------- a página do produto ---------- */
+.ficha { display: grid; gap: 40px; grid-template-columns: 1fr; }
+@media (min-width: 780px) {
+  .ficha { grid-template-columns: 1.6fr 1fr; align-items: start; }
+}
+.ficha aside {
+  background: var(--papel-fundo);
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  padding: 22px 24px;
+  font-size: 15px;
+}
+.ficha aside h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--tinta-fraca); margin-bottom: 14px; }
+.ficha aside ul { list-style: none; margin: 0; padding: 0; }
+.ficha aside li { padding: 7px 0; border-bottom: 1px solid var(--linha); }
+.ficha aside li:last-child { border-bottom: 0; }
+
+ul.marcado { padding-left: 20px; margin: 0 0 16px; max-width: 66ch; }
+ul.marcado li { margin-bottom: 7px; }
+
+/* ---------- o rodapé ---------- */
+footer.rodape {
+  background: var(--tinta);
+  color: #C6CBE0;
+  padding: 40px 0 44px;
+  font-size: 15px;
+  margin-top: 40px;
+}
+footer.rodape a { color: var(--branco); }
+footer.rodape a:hover { color: #FFD9C2; }
+footer.rodape .colunas {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 28px;
+}
+footer.rodape h3 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px;
+  color: #8E97BC; margin: 0 0 10px; font-weight: 700;
+}
+footer.rodape ul { list-style: none; margin: 0; padding: 0; }
+footer.rodape li { margin-bottom: 6px; }
+footer.rodape .legal {
+  border-top: 1px solid #2C3A6B;
+  padding-top: 20px;
+  font-size: 13px;
+  color: #8E97BC;
+}
+footer.rodape .legal p { max-width: none; }
+
+:focus-visible { outline: 2px solid var(--destaque); outline-offset: 3px; }

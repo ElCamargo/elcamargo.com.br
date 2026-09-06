@@ -1,0 +1,4 @@
+# cache do vite, usado só para pré-visualizar o site aqui
+.vite/
+node_modules/
+.DS_Store
