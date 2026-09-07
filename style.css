@@ -4,55 +4,91 @@
  * Uma folha só, sem build, sem framework e sem nenhuma requisição externa:
  * nem fonte do Google, nem ícone de CDN, nem script de terceiro. É a mesma
  * regra que os nossos produtos seguem, e não faria sentido o site que fala
- * deles não seguir também.
+ * deles não seguir também. As fontes moram em `fontes/` — ver o LEIA-ME de lá.
  *
- * ISSO DECIDE A TIPOGRAFIA. Sem poder baixar fonte, a personalidade tem que
- * vir de outro lugar: da grade, da cor e da escala. Então o desenho é o
- * enxaimel de Blumenau — a estrutura à vista. As vigas são linhas de 2px que
- * os painéis compartilham, encontrando-se em cantos de verdade; não há sombra,
- * não há canto arredondado e não há cartão flutuando. A moldura é o ornamento,
- * que é o que o enxaimel faz com a madeira, e o que a empresa diz fazer com as
- * decisões: deixá-las à vista, escritas e datadas.
+ * O DESENHO: enxaimel. Blumenau é cidade de casa enxaimel, e enxaimel é
+ * estrutura à vista — a viga aparece, a junta aparece, nada se esconde atrás
+ * de reboco. É a mesma coisa que a empresa diz fazer com as decisões. Então a
+ * grade do site é gaiola de viga compartilhada, a junta ganha cavilha, e a
+ * abertura tem uma empena desenhada inteira em geometria CSS.
  *
- * As duas vozes tipográficas: a sem-serifa do sistema para ler, e a
- * monoespaçada para o que é REGISTRO — rótulo de seção, CNPJ, data, estado do
- * produto. Empresa que anota decisão em repositório fala nessa voz.
+ * Duas vozes tipográficas: a serifada (Fraunces) para o institucional, a
+ * sem-serifa (IBM Plex Sans) para ler, e a monoespaçada (IBM Plex Mono) para o
+ * que é REGISTRO — rótulo, CNPJ, estado do produto. Empresa que anota decisão
+ * em repositório fala nessa terceira voz.
  */
 
-:root {
-  --viga:        #16224F;   /* a madeira: o azul da casa, o mesmo do Lumus */
-  --viga-fina:   #C9CCC2;   /* a mesma linha, quando é divisória e não estrutura */
-  --reboco:      #F0F1EC;   /* o barro claro entre as vigas */
-  --reboco-cova: #E6E8E0;   /* o painel que afunda */
-  --branco:      #FAFBF7;
-  --tinta:       #16224F;
-  --tinta-fraca: #55607F;
-  --mata:        #1F5C46;   /* verde de araucária: é o destaque, e é raro */
-  --ambar:       #9C6200;   /* só o Lumus usa: a cor é dele, não do site */
-  /* O botão tem tokens próprios porque no escuro ele INVERTE: manter fundo
-     escuro com tinta clara ali daria azul médio com texto quase preto. */
-  --botao-fundo:       #16224F;
-  --botao-tinta:       #F0F1EC;
-  --botao-hover-tinta: #FFFFFF;
-  --largura: 1060px;
-  --viga-px: 2px;
-  color-scheme: light dark;
+/* ---------- as fontes, servidas daqui ----------
+   `latin` cobre U+0000-00FF, onde estão todos os acentos do português.
+   Fraunces e Plex Sans são variáveis: um arquivo para toda a faixa de peso. */
+@font-face {
+  font-family: "Fraunces";
+  src: url("fontes/fraunces-latin.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("fontes/plex-sans-latin.woff2") format("woff2");
+  font-weight: 400 600; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Só o peso 500 da monoespaçada: é o único que a folha usa. O 600 foi baixado
+   junto e apagado depois — 15 KB que nenhuma regra pedia. */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("fontes/plex-mono-500-latin.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+:root {
+  --viga:        #241A15;   /* a madeira: marrom quase preto */
+  --terracota:   #8C4A2F;   /* a mesma madeira um tom acima, e o tijolo */
+  --parede:      #F4F1E9;   /* reboco colonial: o fundo das seções */
+  --parede-cova: #E9E4D8;   /* o painel que afunda */
+  --painel:      #FBF9F4;   /* o claro de dentro dos cards e do enchimento */
+  --tinta:       #241A15;
+  --tinta-fraca: #6A5A50;
+  --mata:        #14452F;   /* verde escuro: links e ação */
+  --ouro:        #B8912F;   /* dourado fosco: cavilha, hover, detalhe */
+  --linha:       rgba(36, 26, 21, .22);
+
+  /* O botão tem tokens próprios porque no escuro ele INVERTE. */
+  --botao-fundo: #14452F;
+  --botao-tinta: #F4F1E9;
+  --botao-hover: #B8912F;
+  --botao-hover-tinta: #241A15;
+
+  --serif: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans:  "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --largura: 1120px;
+  color-scheme: light;
+}
+
+/* No escuro a lógica é a mesma, invertida: enchimento escuro, viga clara.
+   ATENÇÃO: --parede-cova precisa ficar MAIS CLARO que --painel aqui, porque é
+   o fundo contra o qual a silhueta da empena aparece. Com os dois iguais, o
+   recorte da casa existe e não se vê. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --viga:        #38487E;
-    --viga-fina:   #2A3358;
-    --reboco:      #10162C;
-    --reboco-cova: #171F3C;
-    --branco:      #141B33;
-    --tinta:       #E9ECF6;
-    --tinta-fraca: #9AA4C4;
-    --mata:        #57C79B;
-    --ambar:       #F0B54A;
-    --botao-fundo:       #E9ECF6;
-    --botao-tinta:       #0F1730;
-    --botao-hover-tinta: #0F1730;
+    --viga:        #4A3A31;
+    --terracota:   #B4664A;
+    --parede:      #16110E;
+    --parede-cova: #2A211C;
+    --painel:      #1B1512;
+    --tinta:       #EFEAE1;
+    --tinta-fraca: #A99B90;
+    --mata:        #5FBF8E;
+    --ouro:        #D9AE4E;
+    --linha:       rgba(239, 234, 225, .22);
+    --botao-fundo: #EFEAE1;
+    --botao-tinta: #16110E;
+    --botao-hover: #D9AE4E;
+    --botao-hover-tinta: #16110E;
+    color-scheme: dark;
   }
 }
 
@@ -63,265 +99,302 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--reboco);
+  background: var(--parede);
   color: var(--tinta);
-  font: 17px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, "Helvetica Neue", Arial, sans-serif;
+  font: 400 16.5px/1.65 var(--sans);
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* A voz do registro. Aparece em rótulo, data, CNPJ e estado — nunca em texto
-   corrido, senão deixa de significar "isto está anotado". */
+/* A voz do registro. Rótulo, data, CNPJ, estado — nunca texto corrido, senão
+   deixa de significar "isto está anotado". */
 .registro {
-  font-family: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas,
-               "Liberation Mono", monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font: 500 12px/1 var(--mono);
+  letter-spacing: .16em; text-transform: uppercase;
   color: var(--tinta-fraca);
-  font-weight: 600;
 }
 
-.limite { max-width: var(--largura); margin: 0 auto; padding: 0 20px; }
+.limite { max-width: var(--largura); margin: 0 auto; padding: 0 22px; }
+
+/* ---------- A GAIOLA ----------
+   A viga compartilhada: a moldura desenha topo e esquerda, cada painel desenha
+   direita e baixo. As linhas SOMAM em vez de dobrar e o canto fecha de verdade.
+   É o que separa "estrutura" de "cartõezinhos com borda". */
+.gaiola {
+  display: grid;
+  border-top: 3px solid var(--viga);
+  border-left: 3px solid var(--viga);
+  background: var(--painel);
+}
+.gaiola > * {
+  border-right: 3px solid var(--viga);
+  border-bottom: 3px solid var(--viga);
+  padding: 30px 28px;
+  min-width: 0;
+  position: relative;
+}
+
+/* A CAVILHA: um quadrado dourado na junta. Na casa é o pino de madeira que
+   trava a viga; na placa de circuito é o pad de solda. O mesmo desenho lê como
+   as duas coisas — e é ele que faz a grade parecer construída. */
+.gaiola > *::after {
+  content: "";
+  position: absolute; right: -4px; bottom: -4px;
+  width: 7px; height: 7px; background: var(--ouro);
+}
+
+/* ---------- A EMPENA ----------
+   A casa, desenhada só com geometria: nenhuma imagem, nenhum direito autoral
+   de terceiro. O que faz reconhecer enxaimel são quatro coisas, e todas estão
+   aqui: viga GROSSA e escura contra enchimento claro; vão IRREGULAR, com a
+   escora em alguns vãos e não em todos; a empena triangular, que é a silhueta;
+   e o enchimento de tijolo em parte dos vãos. */
+.empena {
+  position: relative;
+  aspect-ratio: 1 / 1.08;
+  background: var(--painel);
+  clip-path: polygon(50% 0, 100% 40%, 100% 100%, 0 100%, 0 40%);
+}
+
+/* CUIDADO com o sentido do gradiente, que é contraintuitivo: `to top right`
+   aponta o EIXO para o canto superior direito, e as faixas saem PERPENDICULARES
+   a ele — desenham "\", não "/". Trocar os dois lados põe o telhado de cabeça
+   para baixo e o frontão vira uma seta.
+       "/"  →  to bottom right      "\"  →  to top right                  */
+.frontao { position: absolute; left: 0; right: 0; top: 0; height: 40%; }
+.frontao i { position: absolute; display: block; }
+.agua-esq { left: 0; width: 50%; top: 0; bottom: 0;
+  background: linear-gradient(to bottom right, transparent calc(50% - 2.5px), var(--viga) calc(50% - 2.5px), var(--viga) calc(50% + 2.5px), transparent calc(50% + 2.5px)); }
+.agua-dir { right: 0; width: 50%; top: 0; bottom: 0;
+  background: linear-gradient(to top right, transparent calc(50% - 2.5px), var(--viga) calc(50% - 2.5px), var(--viga) calc(50% + 2.5px), transparent calc(50% + 2.5px)); }
+.pendural { left: calc(50% - 2px); width: 4px; top: 34%; bottom: 0; background: var(--viga); }
+.nivel    { left: 16%; right: 16%; top: 62%; height: 4px; background: var(--viga); }
+
+.corpo {
+  position: absolute; left: 0; right: 0; top: 40%; bottom: 0;
+  display: grid; grid-template-columns: 1fr 1.15fr 1fr; grid-template-rows: 1fr 1fr;
+  border-top: 5px solid var(--viga);
+}
+.corpo i { display: block; position: relative;
+  border-right: 4px solid var(--viga); border-bottom: 4px solid var(--viga); }
+.corpo i:nth-child(3n) { border-right: 0; }
+.corpo i:nth-last-child(-n+3) { border-bottom: 0; }
+
+/* A mão-francesa: em dois vãos só, e as duas subindo para o meio — a figura do
+   "homem". É a irregularidade que faz parecer construído, não gerado. */
+.sobe  { background-image: linear-gradient(to bottom right, transparent calc(50% - 2px), var(--viga) calc(50% - 2px), var(--viga) calc(50% + 2px), transparent calc(50% + 2px)); }
+.desce { background-image: linear-gradient(to top right,    transparent calc(50% - 2px), var(--viga) calc(50% - 2px), var(--viga) calc(50% + 2px), transparent calc(50% + 2px)); }
+
+/* O tijolo. A junta ficou a prumo em vez de amarrada: é simplificação
+   consciente — nesta escala não se distingue, e amarrar custa quatro camadas. */
+.tijolo {
+  background-color: var(--terracota);
+  background-image:
+    repeating-linear-gradient(0deg,  var(--parede-cova) 0 2px, transparent 2px 15px),
+    repeating-linear-gradient(90deg, var(--parede-cova) 0 2px, transparent 2px 30px);
+}
+.janela::after {
+  content: ""; position: absolute; left: 24%; right: 24%; top: 22%; bottom: 22%;
+  background: var(--viga); border: 3px solid var(--painel);
+}
+
+/* O FRECHAL: divisor de seção. Uma viga fina com cavilhas espaçadas. Lê como
+   barrote e como barramento. */
+.frechal {
+  height: 5px;
+  background:
+    linear-gradient(var(--viga), var(--viga)) left top / 100% 2px no-repeat,
+    repeating-linear-gradient(to right, var(--ouro) 0 5px, transparent 5px 60px) left top / 100% 5px no-repeat;
+}
 
 /* ---------- o topo ---------- */
 header.topo {
-  border-bottom: var(--viga-px) solid var(--viga);
-  background: var(--reboco);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  border-bottom: 3px solid var(--viga);
+  background: var(--parede);
+  position: sticky; top: 0; z-index: 10;
 }
 .topo .limite {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px 26px;
-  flex-wrap: wrap;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 14px 28px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 16px;
 }
-.marca {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.3px;
-  color: var(--tinta);
-  text-decoration: none;
-  white-space: nowrap;
-}
+.marca { font: 700 20px/1 var(--serif); color: var(--tinta); text-decoration: none; letter-spacing: -.2px; }
+.marca em { font-style: normal; color: var(--terracota); }
 .marca span {
-  font-family: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  display: block; margin-top: 6px;
+  font: 500 10px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase;
   color: var(--tinta-fraca);
-  margin-left: 8px;
 }
-
-nav.menu { display: flex; gap: 20px; flex-wrap: wrap; }
+nav.menu { display: flex; gap: 22px; flex-wrap: wrap; }
 nav.menu a {
-  color: var(--tinta-fraca);
-  text-decoration: none;
-  font-size: 15px;
-  padding-bottom: 3px;
-  border-bottom: var(--viga-px) solid transparent;
+  font: 500 14.5px/1 var(--sans); color: var(--tinta-fraca);
+  text-decoration: none; padding-bottom: 4px; border-bottom: 2px solid transparent;
 }
-nav.menu a:hover, nav.menu a:focus-visible { color: var(--tinta); border-bottom-color: var(--mata); }
+nav.menu a:hover, nav.menu a:focus-visible { color: var(--tinta); border-bottom-color: var(--ouro); }
 nav.menu a[aria-current="page"] { color: var(--tinta); border-bottom-color: var(--viga); }
 
-/* ---------- a moldura ----------
-   A regra que faz a grade parecer estrutura e não cartões soltos: a moldura
-   desenha só o topo e a esquerda, e cada painel desenha a direita e a baixo.
-   As linhas se somam em vez de dobrar, e os cantos fecham. */
-.moldura {
-  border-top: var(--viga-px) solid var(--viga);
-  border-left: var(--viga-px) solid var(--viga);
-  display: grid;
-  background: var(--branco);
-}
-.moldura > * {
-  border-right: var(--viga-px) solid var(--viga);
-  border-bottom: var(--viga-px) solid var(--viga);
-  padding: 26px 24px;
-  min-width: 0;
-}
-
 /* ---------- a abertura ---------- */
-.abertura { padding: 46px 0 54px; }
-.abertura .moldura { grid-template-columns: 1fr; }
-@media (min-width: 800px) {
-  .abertura .moldura { grid-template-columns: 1.75fr 1fr; }
-}
+.abertura { padding: 52px 0 0; }
+.abertura .gaiola { grid-template-columns: 1fr; }
+@media (min-width: 900px) { .abertura .gaiola { grid-template-columns: 1.7fr 1fr; } }
 
-.painel-tese { padding: 34px 30px 32px; }
+.painel-tese { padding: 42px 36px 38px; }
+.rubrica {
+  font: 500 11px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--terracota); margin-bottom: 20px;
+}
 .abertura h1 {
-  font-size: clamp(30px, 5.2vw, 46px);
-  line-height: 1.08;
-  letter-spacing: -1.2px;
-  font-weight: 800;
-  margin: 14px 0 18px;
-  max-width: 17ch;
-  text-wrap: balance;
+  font: 600 clamp(32px, 5.2vw, 52px)/1.06 var(--serif);
+  letter-spacing: -1.3px; margin: 0 0 20px; max-width: 15ch; text-wrap: balance;
 }
+.abertura h1 b { font-weight: 600; color: var(--terracota); }
 .abertura p.linha-fina {
-  font-size: 19px;
-  line-height: 1.55;
-  color: var(--tinta-fraca);
-  margin: 0;
-  max-width: 52ch;
+  font: 400 18px/1.55 var(--sans); color: var(--tinta-fraca);
+  margin: 0; max-width: 50ch;
 }
 
-/* A placa: os dados que uma empresa tem e um discurso não tem. */
-.placa { background: var(--reboco-cova); padding: 0; }
-.placa dl { margin: 0; }
-.placa div { padding: 14px 22px; border-bottom: 1px solid var(--viga-fina); }
+/* a coluna da estrutura: a casa em cima, os dados da empresa embaixo */
+.estrutura { background: var(--parede-cova); padding: 0; }
+.estrutura .empena { margin: 24px 24px 20px; }
+.placa { border-top: 3px solid var(--viga); }
+.placa div { padding: 13px 22px; border-bottom: 1px solid var(--linha); }
 .placa div:last-child { border-bottom: 0; }
-.placa dt { font-size: 11px; }
-.placa dd {
-  margin: 3px 0 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--tinta);
-  letter-spacing: -0.2px;
-}
+.placa dl { margin: 0; }
+.placa dt { font: 500 10px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--tinta-fraca); }
+.placa dd { margin: 5px 0 0; font: 600 15px/1.3 var(--sans); letter-spacing: -.2px; color: var(--tinta); }
 
 /* ---------- seções ---------- */
-section { padding: 0 0 54px; }
+section { padding: 56px 0; }
 
-h2.rotulo {
-  margin: 0 0 16px;
-  padding-bottom: 9px;
-  border-bottom: var(--viga-px) solid var(--viga);
-  font-size: 12px;
+.rotulo {
+  display: flex; align-items: baseline; gap: 14px; margin: 0 0 20px;
+  font: 500 11px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--tinta-fraca);
 }
-h3 { font-size: 21px; margin: 0 0 8px; letter-spacing: -0.4px; font-weight: 800; }
+.rotulo::after { content: ""; flex: 1; height: 2px; background: var(--viga); }
+h2.titulo { font: 600 clamp(25px, 3.3vw, 33px)/1.15 var(--serif); letter-spacing: -.7px; margin: 0 0 10px; max-width: 22ch; }
+.chamada { font: 400 17px/1.6 var(--sans); color: var(--tinta-fraca); margin: 0 0 28px; max-width: 64ch; }
 
 p { margin: 0 0 15px; max-width: 68ch; }
 p:last-child { margin-bottom: 0; }
-
 a { color: var(--mata); text-underline-offset: 3px; }
 a:hover { color: var(--tinta); }
 
 /* ---------- os produtos ---------- */
 .produtos { grid-template-columns: 1fr; }
 @media (min-width: 760px) { .produtos { grid-template-columns: 1fr 1fr; } }
+.produto { display: flex; flex-direction: column; }
+.produto h3 { font: 600 22px/1.2 var(--serif); letter-spacing: -.4px; margin: 0 0 10px; }
+.produto p { font: 400 15.5px/1.6 var(--sans); color: var(--tinta-fraca); margin: 0 0 18px; flex: 1; max-width: none; }
 
-.produto { display: flex; flex-direction: column; padding: 28px 26px; }
-.produto h3 { margin-bottom: 10px; }
-.produto p { font-size: 16px; color: var(--tinta-fraca); flex-grow: 1; max-width: none; }
-.produto .acoes { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-
-/* O estado do produto é registro, não enfeite: fica na voz monoespaçada, com
-   um quadrado de cor à frente. Sem pílula colorida, sem emoji. */
-.selo { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 11px; }
+/* O estado do produto é registro, não enfeite: voz monoespaçada com um
+   quadrado de cor à frente. Sem pílula colorida, sem emoji. */
+.selo { display: flex; align-items: center; gap: 9px; margin-bottom: 18px;
+  font: 500 11px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; }
 .selo::before { content: ""; width: 9px; height: 9px; flex: none; background: currentColor; }
 .selo.no-ar { color: var(--mata); }
-.selo.fazendo { color: var(--tinta-fraca); }
+.selo.fazendo { color: var(--terracota); }
+
+.acoes { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
 /* ---------- como trabalhamos ---------- */
 .valores { grid-template-columns: 1fr; }
-@media (min-width: 620px) { .valores { grid-template-columns: 1fr 1fr; } }
-.valores h3 { font-size: 18px; }
-.valores p { font-size: 15.5px; color: var(--tinta-fraca); max-width: none; }
+@media (min-width: 700px) { .valores { grid-template-columns: 1fr 1fr; } }
+.valores h3 { font: 600 19px/1.25 var(--serif); letter-spacing: -.3px; margin: 0 0 9px; }
+.valores p { font: 400 15.5px/1.6 var(--sans); color: var(--tinta-fraca); margin: 0; max-width: 46ch; }
+.valores .medida {
+  display: block; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--linha);
+  font: 500 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--terracota);
+}
+/* A MÃO-FRANCESA DE CANTO. Uma escora curta cortando o canto do painel, que é
+   onde ela fica numa casa de verdade. Tem 26px e a folga do painel é 28px:
+   nunca encosta em letra nenhuma. */
+.valores > div::before {
+  content: ""; position: absolute; right: 0; top: 0; width: 26px; height: 26px;
+  background: linear-gradient(to bottom left, transparent calc(50% - 1.5px), var(--viga) calc(50% - 1.5px), var(--viga) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+}
 
 /* ---------- contato ---------- */
 .contato { grid-template-columns: 1fr; }
 @media (min-width: 760px) { .contato { grid-template-columns: 1fr 1fr; } }
-.contato p { font-size: 16px; color: var(--tinta-fraca); max-width: none; }
-.contato .email {
-  display: inline-block;
-  margin-top: 4px;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-}
+.contato h3 { font: 600 19px/1.25 var(--serif); letter-spacing: -.3px; margin: 0 0 9px; }
+.contato p { font: 400 15.5px/1.6 var(--sans); color: var(--tinta-fraca); max-width: none; }
+.contato .email { display: inline-block; margin-top: 6px; font: 600 18px/1.3 var(--sans); letter-spacing: -.2px; }
 
 /* ---------- botões ---------- */
 .botao {
-  display: inline-block;
-  background: var(--botao-fundo);
-  color: var(--botao-tinta);
-  text-decoration: none;
-  padding: 11px 20px;
-  font-size: 15.5px;
-  font-weight: 700;
-  letter-spacing: -0.1px;
-  border: var(--viga-px) solid var(--botao-fundo);
+  display: inline-block; padding: 13px 22px;
+  font: 600 15px/1 var(--sans); letter-spacing: -.1px; text-decoration: none;
+  background: var(--botao-fundo); color: var(--botao-tinta);
+  border: 2px solid var(--botao-fundo);
 }
-.botao:hover, .botao:focus-visible {
-  background: var(--mata); border-color: var(--mata); color: var(--botao-hover-tinta);
-}
+.botao:hover, .botao:focus-visible { background: var(--botao-hover); border-color: var(--botao-hover); color: var(--botao-hover-tinta); }
 .botao.vazio { background: transparent; color: var(--tinta); border-color: var(--viga); }
-.botao.vazio:hover, .botao.vazio:focus-visible {
-  background: var(--botao-fundo); color: var(--botao-tinta); border-color: var(--botao-fundo);
-}
+.botao.vazio:hover, .botao.vazio:focus-visible { background: var(--viga); color: var(--parede); border-color: var(--viga); }
 
 /* ---------- a página do produto ---------- */
 .ficha { grid-template-columns: 1fr; }
-@media (min-width: 860px) { .ficha { grid-template-columns: 1.65fr 1fr; } }
-.ficha > .corpo { padding: 30px 28px; }
-.ficha > aside { background: var(--reboco-cova); padding: 0; }
-
-.ficha aside .bloco { padding: 22px 24px; border-bottom: 1px solid var(--viga-fina); }
+@media (min-width: 880px) { .ficha { grid-template-columns: 1.6fr 1fr; } }
+.ficha > .corpo-texto { padding: 32px 30px; }
+.ficha > aside { background: var(--parede-cova); padding: 0; }
+.ficha aside .bloco { padding: 22px 24px; border-bottom: 1px solid var(--linha); }
 .ficha aside .bloco:last-child { border-bottom: 0; }
-.ficha aside h3 { font-size: 12px; margin-bottom: 12px; padding-bottom: 8px;
-  border-bottom: 1px solid var(--viga-fina); }
-.ficha aside ul { list-style: none; margin: 0; padding: 0; font-size: 15px; }
-.ficha aside li { padding: 6px 0; }
-.ficha aside li strong { display: block; font-size: 11px; }
+.ficha aside h3 { font: 500 11px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase;
+  color: var(--tinta-fraca); margin: 0 0 14px; padding-bottom: 10px; border-bottom: 2px solid var(--viga); }
+.ficha aside ul { list-style: none; margin: 0; padding: 0; }
+.ficha aside li { padding: 7px 0; font: 400 14.5px/1.5 var(--sans); }
+.ficha aside li strong { display: block; font: 500 10px/1 var(--mono);
+  letter-spacing: .16em; text-transform: uppercase; color: var(--tinta-fraca); margin-bottom: 4px; }
 .ficha aside li span { color: var(--tinta-fraca); }
 
-.corpo h2.rotulo { margin-top: 38px; }
-.corpo h2.rotulo:first-child { margin-top: 0; }
+.corpo-texto h2.rotulo { margin-top: 36px; }
+.corpo-texto h2.rotulo:first-child { margin-top: 0; }
+.corpo-texto p { font-size: 16px; }
 
-/* A lista de trilhas: cada uma é uma linha do registro, não um marcador. */
+/* Cada trilha é uma linha do registro, não um marcador de lista. */
 ul.trilhas { list-style: none; margin: 0 0 15px; padding: 0; }
 ul.trilhas li {
-  padding: 9px 0;
-  border-bottom: 1px solid var(--viga-fina);
-  font-size: 16px;
-  color: var(--tinta-fraca);
+  padding: 10px 0 10px 18px; border-top: 1px solid var(--linha); position: relative;
+  font: 400 15.5px/1.55 var(--sans); color: var(--tinta-fraca);
 }
-ul.trilhas li:last-child { border-bottom: 0; }
-ul.trilhas strong { color: var(--tinta); font-weight: 700; margin-right: 4px; }
+ul.trilhas li::before {
+  content: ""; position: absolute; left: 0; top: 18px;
+  width: 5px; height: 5px; background: var(--ouro);
+}
+ul.trilhas strong { color: var(--tinta); font-weight: 600; }
 
 /* ---------- o rodapé ---------- */
-footer.rodape {
-  background: var(--viga);
-  color: #C2C9E2;
-  padding: 40px 0 42px;
-  font-size: 15px;
-  border-top: var(--viga-px) solid var(--viga);
-}
-footer.rodape a { color: #FFF; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
-footer.rodape a:hover { border-bottom-color: #FFF; color: #FFF; }
+footer.rodape { background: var(--viga); color: #CFC4BB; padding: 46px 0 40px; }
 footer.rodape .colunas {
-  display: grid;
-  gap: 26px;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  margin-bottom: 28px;
+  display: grid; gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-footer.rodape h3 { font-size: 11px; margin: 0 0 12px; padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255,255,255,.18); color: #939DC4; }
+footer.rodape .assinatura { max-width: 30ch; }
+footer.rodape .assinatura .marca, footer.rodape .assinatura .marca:hover { color: #FBF9F4; }
+footer.rodape .assinatura p { font: 400 13.5px/1.6 var(--sans); color: #A99B90; margin: 16px 0 0; max-width: none; }
+footer.rodape h3 {
+  font: 500 10px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ouro); margin: 0 0 14px; padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+}
 footer.rodape ul { list-style: none; margin: 0; padding: 0; }
-footer.rodape li { margin-bottom: 7px; }
+footer.rodape li { margin-bottom: 8px; font: 400 14px/1.5 var(--sans); }
+footer.rodape a { color: #EFEAE1; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.28); }
+footer.rodape a:hover { color: var(--ouro); border-bottom-color: var(--ouro); }
 footer.rodape .legal {
-  border-top: 1px solid rgba(255,255,255,.18);
-  padding-top: 20px;
-  font-size: 12px;
-  color: #939DC4;
+  margin-top: 34px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.16);
+  font: 500 12px/1.7 var(--mono); color: #A99B90; letter-spacing: .04em;
 }
 footer.rodape .legal p { max-width: none; margin: 0; }
 
-/* No escuro o rodapé não pode ficar mais claro que a página: ele vira o
-   painel afundado, e os links deixam de ser brancos sobre azul. */
+/* No escuro o rodapé não pode ficar mais claro que a página: ele vira o painel
+   afundado, e os links deixam de ser brancos sobre marrom. */
 @media (prefers-color-scheme: dark) {
-  footer.rodape { background: var(--reboco-cova); color: var(--tinta-fraca); }
+  footer.rodape { background: var(--parede-cova); color: var(--tinta-fraca); }
+  footer.rodape .assinatura .marca, footer.rodape .assinatura .marca:hover { color: var(--tinta); }
   footer.rodape a { color: var(--tinta); border-bottom-color: var(--viga); }
-  footer.rodape a:hover { color: var(--mata); border-bottom-color: var(--mata); }
-  footer.rodape h3 { border-bottom-color: var(--viga-fina); color: var(--tinta-fraca); }
-  footer.rodape .legal { border-top-color: var(--viga-fina); color: var(--tinta-fraca); }
+  footer.rodape a:hover { color: var(--ouro); border-bottom-color: var(--ouro); }
+  footer.rodape h3 { border-bottom-color: var(--linha); }
+  footer.rodape .legal { border-top-color: var(--linha); }
 }
 
-:focus-visible { outline: 3px solid var(--mata); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--ouro); outline-offset: 2px; }
