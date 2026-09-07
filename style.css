@@ -164,16 +164,20 @@ body {
 .frontao { position: absolute; left: 0; right: 0; top: 0; height: 40%; }
 .frontao i { position: absolute; display: block; }
 .agua-esq { left: 0; width: 50%; top: 0; bottom: 0;
-  background: linear-gradient(to bottom right, transparent calc(50% - 2.5px), var(--viga) calc(50% - 2.5px), var(--viga) calc(50% + 2.5px), transparent calc(50% + 2.5px)); }
+  background: linear-gradient(to bottom right, transparent calc(50% - 5px), var(--viga) calc(50% - 5px), var(--viga) calc(50% + 5px), transparent calc(50% + 5px)); }
 .agua-dir { right: 0; width: 50%; top: 0; bottom: 0;
-  background: linear-gradient(to top right, transparent calc(50% - 2.5px), var(--viga) calc(50% - 2.5px), var(--viga) calc(50% + 2.5px), transparent calc(50% + 2.5px)); }
+  background: linear-gradient(to top right, transparent calc(50% - 5px), var(--viga) calc(50% - 5px), var(--viga) calc(50% + 5px), transparent calc(50% + 5px)); }
 .pendural { left: calc(50% - 2px); width: 4px; top: 34%; bottom: 0; background: var(--viga); }
 .nivel    { left: 16%; right: 16%; top: 62%; height: 4px; background: var(--viga); }
 
+/* A borda externa vai AQUI, e não em .empena: `clip-path` recorta a borda do
+   elemento junto com ele, então contorno posto na empena simplesmente some.
+   O .corpo está inteiro dentro do recorte, então os esteios de canto e o
+   baldrame sobrevivem — sem eles a casa ficava com as paredes sem madeira. */
 .corpo {
   position: absolute; left: 0; right: 0; top: 40%; bottom: 0;
   display: grid; grid-template-columns: 1fr 1.15fr 1fr; grid-template-rows: 1fr 1fr;
-  border-top: 5px solid var(--viga);
+  border: 5px solid var(--viga);
 }
 .corpo i { display: block; position: relative;
   border-right: 4px solid var(--viga); border-bottom: 4px solid var(--viga); }
