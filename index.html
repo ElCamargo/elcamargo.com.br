@@ -7,8 +7,10 @@
 <meta name="description" content="ElCamargo Soluções em TI LTDA, de Blumenau/SC. Fazemos o Lumus, um hub de jogos educativos infantis gratuito e sem anúncios, e o Collectors Community.">
 <meta name="author" content="ElCamargo Soluções em TI LTDA">
 <link rel="canonical" href="https://elcamargo.com.br/">
+<meta name="theme-color" content="#F0F1EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10162C" media="(prefers-color-scheme: dark)">
 <!-- Favicon embutido: o site não faz uma única requisição externa. -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2316224F'/%3E%3Cpath d='M20 16h24v8H29v8h13v8H29v8h15v8H20z' fill='%23FBFAF7'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2316224F'/%3E%3Cpath d='M20 16h24v8H29v8h13v8H29v8h15v8H20z' fill='%23F0F1EC'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,40 +32,76 @@
 
 <div class="abertura">
   <div class="limite">
-    <h1>Software feito com calma, em Blumenau.</h1>
-    <p class="linha-fina">Somos uma empresa pequena de Santa Catarina. Fazemos poucos
-    produtos e cuidamos deles de perto — a começar por um hub de jogos educativos
-    que damos de graça a famílias do mundo inteiro.</p>
+    <div class="moldura">
+
+      <div class="painel-tese">
+        <div class="registro">Blumenau · Santa Catarina · Brasil</div>
+        <h1>Software feito com calma.</h1>
+        <p class="linha-fina">Somos uma empresa pequena de Santa Catarina. Fazemos
+        poucos produtos e cuidamos deles de perto — a começar por um hub de jogos
+        educativos que damos de graça a famílias do mundo inteiro.</p>
+      </div>
+
+      <!-- A placa. Uma empresa tem dados que um discurso não tem, e é o que
+           alguém desconfiado procura primeiro: existe mesmo, e desde quando. -->
+      <div class="placa">
+        <dl>
+          <div>
+            <dt class="registro">Razão social</dt>
+            <dd>ElCamargo Soluções em TI LTDA</dd>
+          </div>
+          <div>
+            <dt class="registro">CNPJ</dt>
+            <dd>57.299.418/0001-69</dd>
+          </div>
+          <div>
+            <dt class="registro">Sede</dt>
+            <dd>Blumenau, SC</dd>
+          </div>
+          <div>
+            <dt class="registro">Produtos</dt>
+            <dd>1 no ar &nbsp;·&nbsp; 1 em desenvolvimento</dd>
+          </div>
+        </dl>
+      </div>
+
+    </div>
   </div>
 </div>
 
 <section id="produtos">
   <div class="limite">
-    <h2>Produtos</h2>
-    <div class="produtos">
+    <h2 class="rotulo registro">Produtos</h2>
+    <div class="moldura produtos">
 
       <article class="produto">
-        <span class="selo no-ar">No ar</span>
+        <div class="selo no-ar registro">No ar</div>
         <h3>Lumus — Kids Game Hub</h3>
         <p>Jogos educativos para crianças de 3 a 10 anos: alfabetização, contas,
         geografia, ciências e Bíblia. Sem anúncios, sem cobrança, sem cadastro e
         sem coleta de dados. Funciona offline depois da primeira abertura, e é
         gratuito para sempre.</p>
         <div class="acoes">
-          <a class="botao" href="https://lumus.elcamargo.com.br/">Jogar agora</a>
+          <!-- O endereço definitivo é lumus.elcamargo.com.br. Ele já está no DNS,
+               mas ainda não responde: o progresso de quem joga fica gravado no
+               navegador preso ao endereço em que foi gravado, e a mudança só
+               acontece quando todo mundo tiver salvado a cópia. Até lá o botão
+               aponta para onde o app realmente está — apontar para o endereço
+               novo antes da hora é entregar um 404 a quem clicou. -->
+          <a class="botao" href="https://elcamargo.github.io/KidsGameHub/">Jogar agora</a>
           <a class="botao vazio" href="lumus.html">Saiba mais</a>
         </div>
       </article>
 
       <article class="produto">
-        <span class="selo fazendo">Em desenvolvimento</span>
+        <div class="selo fazendo registro">Em desenvolvimento</div>
         <h3>Collectors Community</h3>
         <p>Aplicativo para colecionadores registrarem cartas físicas com ajuda da
         câmera, organizarem coleção e bulk, acompanharem o que falta e
         compartilharem listas. A primeira entrega é uma beta Android privada, em
         preparação.</p>
         <div class="acoes">
-          <span style="color:var(--tinta-fraca); font-size:15px;">Sem data de lançamento ainda.</span>
+          <span class="registro">Sem data de lançamento</span>
         </div>
       </article>
 
@@ -73,8 +111,8 @@
 
 <section id="como">
   <div class="limite">
-    <h2>Como trabalhamos</h2>
-    <div class="valores">
+    <h2 class="rotulo registro">Como trabalhamos</h2>
+    <div class="moldura valores">
 
       <div>
         <h3>O produto não vive de você</h3>
@@ -110,12 +148,24 @@
 
 <section id="contato">
   <div class="limite">
-    <h2>Contato</h2>
-    <p>Para falar sobre os produtos, relatar um problema ou propor uma parceria:
-    <a href="mailto:contato@elcamargo.com.br">contato@elcamargo.com.br</a>.</p>
-    <p>Se encontrou um erro de conteúdo no Lumus — uma pergunta com duas respostas
-    certas, uma sílaba separada errado —, escreva mesmo assim. É o tipo de
-    correção que mais nos interessa.</p>
+    <h2 class="rotulo registro">Contato</h2>
+    <div class="moldura contato">
+
+      <div>
+        <h3>Falar com a gente</h3>
+        <p>Sobre os produtos, para relatar um problema ou para propor uma parceria.</p>
+        <a class="email" href="mailto:contato@elcamargo.com.br">contato@elcamargo.com.br</a>
+      </div>
+
+      <div>
+        <h3>Achou um erro no Lumus?</h3>
+        <p>Uma pergunta com duas respostas certas, uma sílaba separada errado, um
+        fato fora do lugar — escreva mesmo assim. É o tipo de correção que mais
+        nos interessa, e temos documentos de revisão prontos, em português e sem
+        uma linha de código, para quem quiser conferir.</p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -126,24 +176,24 @@
     <div class="colunas">
 
       <div>
-        <h3>Produtos</h3>
+        <h3 class="registro">Produtos</h3>
         <ul>
           <li><a href="lumus.html">Lumus — Kids Game Hub</a></li>
-          <li><a href="https://lumus.elcamargo.com.br/">Jogar o Lumus</a></li>
+          <li><a href="https://elcamargo.github.io/KidsGameHub/">Jogar o Lumus</a></li>
         </ul>
       </div>
 
       <div>
-        <h3>Lumus</h3>
+        <h3 class="registro">Lumus</h3>
         <ul>
-          <li><a href="https://lumus.elcamargo.com.br/privacidade.html">Política de Privacidade</a></li>
-          <li><a href="https://lumus.elcamargo.com.br/termos.html">Termos de Uso</a></li>
+          <li><a href="https://elcamargo.github.io/KidsGameHub/privacidade.html">Política de Privacidade</a></li>
+          <li><a href="https://elcamargo.github.io/KidsGameHub/termos.html">Termos de Uso</a></li>
           <li><a href="https://github.com/ElCamargo/KidsGameHub">Código-fonte</a></li>
         </ul>
       </div>
 
       <div>
-        <h3>Empresa</h3>
+        <h3 class="registro">Empresa</h3>
         <ul>
           <li><a href="mailto:contato@elcamargo.com.br">contato@elcamargo.com.br</a></li>
           <li>Blumenau, Santa Catarina</li>

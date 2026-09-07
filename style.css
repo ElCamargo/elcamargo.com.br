@@ -5,215 +5,323 @@
  * nem fonte do Google, nem ícone de CDN, nem script de terceiro. É a mesma
  * regra que os nossos produtos seguem, e não faria sentido o site que fala
  * deles não seguir também.
+ *
+ * ISSO DECIDE A TIPOGRAFIA. Sem poder baixar fonte, a personalidade tem que
+ * vir de outro lugar: da grade, da cor e da escala. Então o desenho é o
+ * enxaimel de Blumenau — a estrutura à vista. As vigas são linhas de 2px que
+ * os painéis compartilham, encontrando-se em cantos de verdade; não há sombra,
+ * não há canto arredondado e não há cartão flutuando. A moldura é o ornamento,
+ * que é o que o enxaimel faz com a madeira, e o que a empresa diz fazer com as
+ * decisões: deixá-las à vista, escritas e datadas.
+ *
+ * As duas vozes tipográficas: a sem-serifa do sistema para ler, e a
+ * monoespaçada para o que é REGISTRO — rótulo de seção, CNPJ, data, estado do
+ * produto. Empresa que anota decisão em repositório fala nessa voz.
  */
 
 :root {
-  --tinta: #16224F;      /* o azul da casa, o mesmo do Lumus */
-  --tinta-fraca: #4A5680;
-  --papel: #FBFAF7;
-  --papel-fundo: #F2F1EC;
-  --linha: #DFDDD5;
-  --destaque: #B4531F;   /* terracota queimado, só para o que é ação */
-  --branco: #FFFFFF;
-  --largura: 940px;
-  color-scheme: light;
+  --viga:        #16224F;   /* a madeira: o azul da casa, o mesmo do Lumus */
+  --viga-fina:   #C9CCC2;   /* a mesma linha, quando é divisória e não estrutura */
+  --reboco:      #F0F1EC;   /* o barro claro entre as vigas */
+  --reboco-cova: #E6E8E0;   /* o painel que afunda */
+  --branco:      #FAFBF7;
+  --tinta:       #16224F;
+  --tinta-fraca: #55607F;
+  --mata:        #1F5C46;   /* verde de araucária: é o destaque, e é raro */
+  --ambar:       #9C6200;   /* só o Lumus usa: a cor é dele, não do site */
+  /* O botão tem tokens próprios porque no escuro ele INVERTE: manter fundo
+     escuro com tinta clara ali daria azul médio com texto quase preto. */
+  --botao-fundo:       #16224F;
+  --botao-tinta:       #F0F1EC;
+  --botao-hover-tinta: #FFFFFF;
+  --largura: 1060px;
+  --viga-px: 2px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --viga:        #38487E;
+    --viga-fina:   #2A3358;
+    --reboco:      #10162C;
+    --reboco-cova: #171F3C;
+    --branco:      #141B33;
+    --tinta:       #E9ECF6;
+    --tinta-fraca: #9AA4C4;
+    --mata:        #57C79B;
+    --ambar:       #F0B54A;
+    --botao-fundo:       #E9ECF6;
+    --botao-tinta:       #0F1730;
+    --botao-hover-tinta: #0F1730;
+  }
 }
 
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  background: var(--papel);
+  background: var(--reboco);
   color: var(--tinta);
-  font: 17px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, sans-serif;
+  font: 17px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 
-.limite { max-width: var(--largura); margin: 0 auto; padding: 0 22px; }
+/* A voz do registro. Aparece em rótulo, data, CNPJ e estado — nunca em texto
+   corrido, senão deixa de significar "isto está anotado". */
+.registro {
+  font-family: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas,
+               "Liberation Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+  font-weight: 600;
+}
+
+.limite { max-width: var(--largura); margin: 0 auto; padding: 0 20px; }
 
 /* ---------- o topo ---------- */
 header.topo {
-  border-bottom: 1px solid var(--linha);
-  background: var(--papel);
+  border-bottom: var(--viga-px) solid var(--viga);
+  background: var(--reboco);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 .topo .limite {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 18px;
+  gap: 16px 26px;
   flex-wrap: wrap;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .marca {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
   color: var(--tinta);
   text-decoration: none;
   white-space: nowrap;
 }
-.marca span { color: var(--tinta-fraca); font-weight: 400; }
+.marca span {
+  font-family: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+  margin-left: 8px;
+}
 
-nav.menu { display: flex; gap: 22px; flex-wrap: wrap; }
+nav.menu { display: flex; gap: 20px; flex-wrap: wrap; }
 nav.menu a {
   color: var(--tinta-fraca);
   text-decoration: none;
   font-size: 15px;
-  padding: 4px 0;
-  border-bottom: 2px solid transparent;
+  padding-bottom: 3px;
+  border-bottom: var(--viga-px) solid transparent;
 }
-nav.menu a:hover, nav.menu a:focus-visible { color: var(--tinta); border-bottom-color: var(--destaque); }
-nav.menu a[aria-current="page"] { color: var(--tinta); border-bottom-color: var(--tinta); }
+nav.menu a:hover, nav.menu a:focus-visible { color: var(--tinta); border-bottom-color: var(--mata); }
+nav.menu a[aria-current="page"] { color: var(--tinta); border-bottom-color: var(--viga); }
+
+/* ---------- a moldura ----------
+   A regra que faz a grade parecer estrutura e não cartões soltos: a moldura
+   desenha só o topo e a esquerda, e cada painel desenha a direita e a baixo.
+   As linhas se somam em vez de dobrar, e os cantos fecham. */
+.moldura {
+  border-top: var(--viga-px) solid var(--viga);
+  border-left: var(--viga-px) solid var(--viga);
+  display: grid;
+  background: var(--branco);
+}
+.moldura > * {
+  border-right: var(--viga-px) solid var(--viga);
+  border-bottom: var(--viga-px) solid var(--viga);
+  padding: 26px 24px;
+  min-width: 0;
+}
 
 /* ---------- a abertura ---------- */
-.abertura { padding: 64px 0 52px; border-bottom: 1px solid var(--linha); }
+.abertura { padding: 46px 0 54px; }
+.abertura .moldura { grid-template-columns: 1fr; }
+@media (min-width: 800px) {
+  .abertura .moldura { grid-template-columns: 1.75fr 1fr; }
+}
+
+.painel-tese { padding: 34px 30px 32px; }
 .abertura h1 {
-  font-size: 40px;
-  line-height: 1.15;
-  letter-spacing: -0.8px;
-  margin: 0 0 16px;
-  max-width: 18ch;
+  font-size: clamp(30px, 5.2vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+  font-weight: 800;
+  margin: 14px 0 18px;
+  max-width: 17ch;
   text-wrap: balance;
 }
 .abertura p.linha-fina {
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.55;
   color: var(--tinta-fraca);
   margin: 0;
-  max-width: 58ch;
+  max-width: 52ch;
+}
+
+/* A placa: os dados que uma empresa tem e um discurso não tem. */
+.placa { background: var(--reboco-cova); padding: 0; }
+.placa dl { margin: 0; }
+.placa div { padding: 14px 22px; border-bottom: 1px solid var(--viga-fina); }
+.placa div:last-child { border-bottom: 0; }
+.placa dt { font-size: 11px; }
+.placa dd {
+  margin: 3px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tinta);
+  letter-spacing: -0.2px;
 }
 
 /* ---------- seções ---------- */
-section { padding: 52px 0; border-bottom: 1px solid var(--linha); }
-section:last-of-type { border-bottom: 0; }
+section { padding: 0 0 54px; }
 
-h2 {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1.4px;
-  color: var(--tinta-fraca);
-  font-weight: 700;
-  margin: 0 0 22px;
+h2.rotulo {
+  margin: 0 0 16px;
+  padding-bottom: 9px;
+  border-bottom: var(--viga-px) solid var(--viga);
+  font-size: 12px;
 }
-h3 { font-size: 22px; margin: 0 0 8px; letter-spacing: -0.3px; }
+h3 { font-size: 21px; margin: 0 0 8px; letter-spacing: -0.4px; font-weight: 800; }
 
-p { margin: 0 0 16px; max-width: 66ch; }
+p { margin: 0 0 15px; max-width: 68ch; }
 p:last-child { margin-bottom: 0; }
 
-a { color: var(--destaque); }
+a { color: var(--mata); text-underline-offset: 3px; }
 a:hover { color: var(--tinta); }
 
 /* ---------- os produtos ---------- */
-.produtos { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.produtos { grid-template-columns: 1fr; }
+@media (min-width: 760px) { .produtos { grid-template-columns: 1fr 1fr; } }
 
-.produto {
-  background: var(--branco);
-  border: 1px solid var(--linha);
-  border-radius: 4px;
-  padding: 26px 24px;
-  display: flex;
-  flex-direction: column;
-}
-.produto h3 { margin-bottom: 6px; }
-.produto p { font-size: 16px; color: var(--tinta-fraca); flex-grow: 1; }
-.produto .acoes { margin-top: 18px; display: flex; gap: 16px; flex-wrap: wrap; }
+.produto { display: flex; flex-direction: column; padding: 28px 26px; }
+.produto h3 { margin-bottom: 10px; }
+.produto p { font-size: 16px; color: var(--tinta-fraca); flex-grow: 1; max-width: none; }
+.produto .acoes { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
-.selo {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  border-radius: 3px;
-  margin-bottom: 14px;
-}
-.selo.no-ar { background: #E3EDE4; color: #2C5C36; }
-.selo.fazendo { background: #F2EADC; color: #8A6521; }
+/* O estado do produto é registro, não enfeite: fica na voz monoespaçada, com
+   um quadrado de cor à frente. Sem pílula colorida, sem emoji. */
+.selo { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 11px; }
+.selo::before { content: ""; width: 9px; height: 9px; flex: none; background: currentColor; }
+.selo.no-ar { color: var(--mata); }
+.selo.fazendo { color: var(--tinta-fraca); }
 
-/* ---------- a lista de valores ---------- */
-.valores { display: grid; gap: 28px 40px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+/* ---------- como trabalhamos ---------- */
+.valores { grid-template-columns: 1fr; }
+@media (min-width: 620px) { .valores { grid-template-columns: 1fr 1fr; } }
 .valores h3 { font-size: 18px; }
-.valores p { font-size: 16px; color: var(--tinta-fraca); }
+.valores p { font-size: 15.5px; color: var(--tinta-fraca); max-width: none; }
+
+/* ---------- contato ---------- */
+.contato { grid-template-columns: 1fr; }
+@media (min-width: 760px) { .contato { grid-template-columns: 1fr 1fr; } }
+.contato p { font-size: 16px; color: var(--tinta-fraca); max-width: none; }
+.contato .email {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
 
 /* ---------- botões ---------- */
 .botao {
   display: inline-block;
-  background: var(--tinta);
-  color: var(--branco);
+  background: var(--botao-fundo);
+  color: var(--botao-tinta);
   text-decoration: none;
-  padding: 11px 22px;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 11px 20px;
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  border: var(--viga-px) solid var(--botao-fundo);
 }
-.botao:hover, .botao:focus-visible { background: var(--destaque); color: var(--branco); }
-.botao.vazio {
-  background: transparent;
-  color: var(--tinta);
-  border: 1px solid var(--linha);
+.botao:hover, .botao:focus-visible {
+  background: var(--mata); border-color: var(--mata); color: var(--botao-hover-tinta);
 }
-.botao.vazio:hover { border-color: var(--tinta); background: transparent; color: var(--tinta); }
+.botao.vazio { background: transparent; color: var(--tinta); border-color: var(--viga); }
+.botao.vazio:hover, .botao.vazio:focus-visible {
+  background: var(--botao-fundo); color: var(--botao-tinta); border-color: var(--botao-fundo);
+}
 
 /* ---------- a página do produto ---------- */
-.ficha { display: grid; gap: 40px; grid-template-columns: 1fr; }
-@media (min-width: 780px) {
-  .ficha { grid-template-columns: 1.6fr 1fr; align-items: start; }
-}
-.ficha aside {
-  background: var(--papel-fundo);
-  border: 1px solid var(--linha);
-  border-radius: 4px;
-  padding: 22px 24px;
-  font-size: 15px;
-}
-.ficha aside h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px;
-  color: var(--tinta-fraca); margin-bottom: 14px; }
-.ficha aside ul { list-style: none; margin: 0; padding: 0; }
-.ficha aside li { padding: 7px 0; border-bottom: 1px solid var(--linha); }
-.ficha aside li:last-child { border-bottom: 0; }
+.ficha { grid-template-columns: 1fr; }
+@media (min-width: 860px) { .ficha { grid-template-columns: 1.65fr 1fr; } }
+.ficha > .corpo { padding: 30px 28px; }
+.ficha > aside { background: var(--reboco-cova); padding: 0; }
 
-ul.marcado { padding-left: 20px; margin: 0 0 16px; max-width: 66ch; }
-ul.marcado li { margin-bottom: 7px; }
+.ficha aside .bloco { padding: 22px 24px; border-bottom: 1px solid var(--viga-fina); }
+.ficha aside .bloco:last-child { border-bottom: 0; }
+.ficha aside h3 { font-size: 12px; margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--viga-fina); }
+.ficha aside ul { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+.ficha aside li { padding: 6px 0; }
+.ficha aside li strong { display: block; font-size: 11px; }
+.ficha aside li span { color: var(--tinta-fraca); }
+
+.corpo h2.rotulo { margin-top: 38px; }
+.corpo h2.rotulo:first-child { margin-top: 0; }
+
+/* A lista de trilhas: cada uma é uma linha do registro, não um marcador. */
+ul.trilhas { list-style: none; margin: 0 0 15px; padding: 0; }
+ul.trilhas li {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--viga-fina);
+  font-size: 16px;
+  color: var(--tinta-fraca);
+}
+ul.trilhas li:last-child { border-bottom: 0; }
+ul.trilhas strong { color: var(--tinta); font-weight: 700; margin-right: 4px; }
 
 /* ---------- o rodapé ---------- */
 footer.rodape {
-  background: var(--tinta);
-  color: #C6CBE0;
-  padding: 40px 0 44px;
+  background: var(--viga);
+  color: #C2C9E2;
+  padding: 40px 0 42px;
   font-size: 15px;
-  margin-top: 40px;
+  border-top: var(--viga-px) solid var(--viga);
 }
-footer.rodape a { color: var(--branco); }
-footer.rodape a:hover { color: #FFD9C2; }
+footer.rodape a { color: #FFF; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
+footer.rodape a:hover { border-bottom-color: #FFF; color: #FFF; }
 footer.rodape .colunas {
   display: grid;
-  gap: 28px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   margin-bottom: 28px;
 }
-footer.rodape h3 {
-  font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px;
-  color: #8E97BC; margin: 0 0 10px; font-weight: 700;
-}
+footer.rodape h3 { font-size: 11px; margin: 0 0 12px; padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,.18); color: #939DC4; }
 footer.rodape ul { list-style: none; margin: 0; padding: 0; }
-footer.rodape li { margin-bottom: 6px; }
+footer.rodape li { margin-bottom: 7px; }
 footer.rodape .legal {
-  border-top: 1px solid #2C3A6B;
+  border-top: 1px solid rgba(255,255,255,.18);
   padding-top: 20px;
-  font-size: 13px;
-  color: #8E97BC;
+  font-size: 12px;
+  color: #939DC4;
 }
-footer.rodape .legal p { max-width: none; }
+footer.rodape .legal p { max-width: none; margin: 0; }
 
-:focus-visible { outline: 2px solid var(--destaque); outline-offset: 3px; }
+/* No escuro o rodapé não pode ficar mais claro que a página: ele vira o
+   painel afundado, e os links deixam de ser brancos sobre azul. */
+@media (prefers-color-scheme: dark) {
+  footer.rodape { background: var(--reboco-cova); color: var(--tinta-fraca); }
+  footer.rodape a { color: var(--tinta); border-bottom-color: var(--viga); }
+  footer.rodape a:hover { color: var(--mata); border-bottom-color: var(--mata); }
+  footer.rodape h3 { border-bottom-color: var(--viga-fina); color: var(--tinta-fraca); }
+  footer.rodape .legal { border-top-color: var(--viga-fina); color: var(--tinta-fraca); }
+}
+
+:focus-visible { outline: 3px solid var(--mata); outline-offset: 2px; }
