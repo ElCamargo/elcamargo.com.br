@@ -20,10 +20,16 @@ seguir também.
 ```
 index.html    início, produtos, como trabalhamos, contato
 clarim.html    a página do Clarim, com os links do app
+lumus.html    só redireciona: o produto se chamou Lumus até 07/09/2026
 style.css     a folha, comentada
 fontes/       os .woff2, a licença OFL e o LEIA-ME
 CNAME         elcamargo.com.br
 ```
+
+**Sobre o `lumus.html`:** existe para não quebrar link antigo. O GitHub Pages
+não faz 301 de arquivo para arquivo, então é `meta refresh` mais `canonical`
+apontando para `clarim.html` — é o `canonical` que o buscador respeita. Apagar
+esse arquivo transforma em 404 todo link compartilhado antes da troca de nome.
 
 ## O desenho: enxaimel
 
