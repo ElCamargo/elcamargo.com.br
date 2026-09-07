@@ -221,9 +221,17 @@ header.topo {
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 14px 28px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 16px;
 }
-.marca { font: 700 20px/1 var(--serif); color: var(--tinta); text-decoration: none; letter-spacing: -.2px; }
+/* ---------- A LOGOMARCA ----------
+   O símbolo é o mesmo desenho da abertura, reduzido até sobreviver a 16 pixels:
+   um notebook com a empena na tela. Sobrou o essencial — a base, a moldura da
+   tela e o triângulo do frontão cheio (contorno some no tamanho de favicon) —
+   mais a cavilha dourada, que é o detalhe que aparece em todo o site.
+   Fica em `currentColor`, então serve em qualquer fundo sem duplicar arquivo. */
+.marca { display: flex; align-items: center; gap: 11px; color: var(--tinta); text-decoration: none; }
+.marca .simbolo { flex: none; width: 34px; height: 34px; }
+.marca .nome { font: 700 20px/1 var(--serif); letter-spacing: -.2px; }
 .marca em { font-style: normal; color: var(--terracota); }
-.marca span {
+.marca .sub {
   display: block; margin-top: 6px;
   font: 500 10px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase;
   color: var(--tinta-fraca);
@@ -256,9 +264,42 @@ nav.menu a[aria-current="page"] { color: var(--tinta); border-bottom-color: var(
   margin: 0; max-width: 50ch;
 }
 
-/* a coluna da estrutura: a casa em cima, os dados da empresa embaixo */
+/* ---------- O NOTEBOOK ----------
+   A casa sozinha dizia "Blumenau" e não dizia "software". Dentro da tela de um
+   notebook ela diz as duas coisas na mesma imagem, que é o que a empresa é: o
+   lugar, feito programa. Tudo geometria — nenhuma imagem. */
 .estrutura { background: var(--parede-cova); padding: 0; }
-.estrutura .empena { margin: 24px 24px 20px; }
+.notebook { margin: 26px 26px 22px; }
+
+.tela {
+  border: 5px solid var(--viga);
+  background: var(--painel);
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+}
+/* A casa é medida pela ALTURA da tela e deixa a largura para o aspect-ratio.
+   Medir pela largura fazia a empena estourar por baixo numa tela 16:10. */
+.tela .empena { height: 88%; width: auto; margin: 0; }
+
+/* A base é mais larga que a tela — é o que faz o desenho ler como notebook e
+   não como moldura de quadro. O recorte dá o leve trapézio da perspectiva. */
+.base {
+  height: 10px;
+  margin: 0 -7%;
+  background: var(--viga);
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+  position: relative;
+}
+/* A dobradiça: um risco claro no meio da base, que é o que o olho procura
+   para confirmar que aquilo abre. */
+.base::after {
+  content: "";
+  position: absolute; left: 50%; top: 3px;
+  width: 46px; height: 3px; margin-left: -23px;
+  background: var(--parede-cova);
+}
 .placa { border-top: 3px solid var(--viga); }
 .placa div { padding: 13px 22px; border-bottom: 1px solid var(--linha); }
 .placa div:last-child { border-bottom: 0; }

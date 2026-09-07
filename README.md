@@ -42,9 +42,15 @@ Quatro peças:
 - **A cavilha.** Um quadrado dourado de 7px na junta. Na casa é o pino de madeira
   que trava a viga; na placa de circuito é o pad de solda. O mesmo desenho lê
   como as duas coisas.
-- **A empena.** A casa da abertura, desenhada inteira em `clip-path` e
-  gradiente: frontão pontudo, pendural, nível, mão-francesa em dois vãos só, e
-  enchimento de tijolo nos vãos de baixo.
+- **A empena, dentro de um notebook.** A casa da abertura é desenhada inteira em
+  `clip-path` e gradiente — frontão pontudo, pendural, nível, mão-francesa em
+  dois vãos só, enchimento de tijolo nos vãos de baixo — e mora na tela de um
+  notebook, também geometria. A casa sozinha dizia "Blumenau" e não dizia
+  "software"; dentro da tela ela diz as duas coisas na mesma imagem.
+- **A logomarca.** O mesmo desenho reduzido até sobreviver a 16 px: sobrou a
+  base, a moldura da tela e a silhueta da casa cheia. Fica em `currentColor`,
+  então serve no topo claro, no rodapé escuro e no favicon sem duplicar arquivo.
+  O triângulo sozinho lia como seta; foi preciso fechar as paredes.
 - **O frechal.** Divisor de seção: viga fina com cavilhas espaçadas.
 
 ### Duas armadilhas anotadas no CSS
