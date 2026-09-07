@@ -19,7 +19,7 @@ seguir também.
 
 ```
 index.html    início, produtos, como trabalhamos, contato
-lumus.html    a página do Lumus, com os links do app
+clarim.html    a página do Clarim, com os links do app
 style.css     a folha, comentada
 fontes/       os .woff2, a licença OFL e o LEIA-ME
 CNAME         elcamargo.com.br
@@ -110,10 +110,10 @@ preto.
    @    A    185.199.111.153
    ```
 
-   E, para o Lumus, que mora em outro repositório:
+   E, para o Clarim, que mora em outro repositório:
 
    ```
-   lumus    CNAME    elcamargo.github.io.
+   clarim    CNAME    elcamargo.github.io.
    ```
 
 3. **Enforce HTTPS** no painel do Pages, depois que o certificado sair — leva de
@@ -137,16 +137,16 @@ preto.
 
 | Produto | Repositório | Estado |
 |---|---|---|
-| Lumus — Kids Game Hub | [`ElCamargo/KidsGameHub`](https://github.com/ElCamargo/KidsGameHub) | no ar, público |
+| Clarim — Kids Game Hub | [`ElCamargo/KidsGameHub`](https://github.com/ElCamargo/KidsGameHub) | no ar, público |
 | Collectors Community | `ElCamargo/CollectorsCommunityApp` | privado, beta Android em preparação |
 
 O site só afirma o que existe: o Collectors aparece como *em desenvolvimento* e
 sem data, porque é o que ele é hoje.
 
-### O endereço do Lumus
+### O endereço do Clarim
 
 Os botões apontam hoje para `elcamargo.github.io/KidsGameHub/`, não para
-`lumus.elcamargo.com.br`. O subdomínio já está no DNS, mas **ainda não
+`clarim.elcamargo.com.br`. O subdomínio já está no DNS, mas **ainda não
 responde**: o progresso de quem joga fica gravado no navegador preso ao
 endereço em que foi gravado, e a troca só acontece quando todas as famílias que
 já usam tiverem salvado a cópia. Apontar para o endereço novo antes disso é
