@@ -144,21 +144,18 @@ preto.
 | Produto | Repositório | Estado |
 |---|---|---|
 | Clarim — Kids Game Hub | [`ElCamargo/KidsGameHub`](https://github.com/ElCamargo/KidsGameHub) | no ar, público |
+| elcamargo-ai-flow | [`ElCamargo/elcamargo-ai-flow`](https://github.com/ElCamargo/elcamargo-ai-flow) | publicado, MIT |
 | Collectors Community | `ElCamargo/CollectorsCommunityApp` | privado, beta Android em preparação |
+| Proteger os Doces | `ElCamargo/CandyDefense` | privado, em concepção |
 
-O site só afirma o que existe: o Collectors aparece como *em desenvolvimento* e
-sem data, porque é o que ele é hoje.
+O site só afirma o que existe: o Collectors e o Proteger os Doces aparecem sem
+data, porque é o que eles são hoje.
 
 ### O endereço do Clarim
 
-Os botões apontam hoje para `elcamargo.github.io/KidsGameHub/`, não para
-`clarim.elcamargo.com.br`. O subdomínio já está no DNS, mas **ainda não
-responde**: o progresso de quem joga fica gravado no navegador preso ao
-endereço em que foi gravado, e a troca só acontece quando todas as famílias que
-já usam tiverem salvado a cópia. Apontar para o endereço novo antes disso é
-entregar um 404 a quem clicou.
-
-Quando a migração acontecer, trocar os links nas duas páginas e no rodapé.
+Desde 22/10/2026 (v1.5.0) o Clarim responde em `clarim.elcamargo.com.br`, e os
+links das duas páginas e do rodapé apontam para lá. O endereço antigo,
+`elcamargo.github.io/KidsGameHub/`, redireciona.
 
 ---
 
