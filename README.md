@@ -143,13 +143,14 @@ preto.
 
 | Produto | Repositório | Estado |
 |---|---|---|
-| Clarim — Kids Game Hub | [`ElCamargo/KidsGameHub`](https://github.com/ElCamargo/KidsGameHub) | no ar, público |
+| Clarim — Kids Game Hub | [`ElCamargo/KidsGameHub`](https://github.com/ElCamargo/KidsGameHub) | na Google Play (`br.com.elcamargo.clarim`) e no navegador, código público |
 | elcamargo-ai-flow | [`ElCamargo/elcamargo-ai-flow`](https://github.com/ElCamargo/elcamargo-ai-flow) | publicado, MIT |
+| Proteger os Doces | `ElCamargo/CandyDefense` | privado, no ar em `protegerosdoces.elcamargo.com.br` (Cloudflare Pages), fora da loja |
 | Collectors Community | `ElCamargo/CollectorsCommunityApp` | privado, beta Android em preparação |
-| Proteger os Doces | `ElCamargo/CandyDefense` | privado, em concepção |
 
-O site só afirma o que existe: o Collectors e o Proteger os Doces aparecem sem
-data, porque é o que eles são hoje.
+O site só afirma o que existe: o Collectors aparece sem data, porque é o que
+ele é hoje, e o Proteger os Doces não tem botão de loja porque não está em
+loja nenhuma.
 
 ### O endereço do Clarim
 
