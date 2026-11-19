@@ -4,11 +4,11 @@ Site institucional da **ElCamargo Soluções em TI LTDA**, de Blumenau/SC.
 
 ## Sem build, de propósito
 
-Duas páginas HTML e uma folha de estilo. Sem npm, sem framework, sem etapa de
-compilação — o GitHub Pages serve os arquivos direto da `main`, e editar o site é
-abrir o arquivo e salvar.
+Duas páginas HTML (mais um redirecionamento e a 404) e uma folha de estilo. Sem
+npm, sem framework, sem etapa de compilação — o GitHub Pages serve os arquivos
+direto da `main`, e editar o site é abrir o arquivo e salvar.
 
-Um site de duas páginas não paga o custo de uma cadeia de ferramentas: cada
+Um site desse tamanho não paga o custo de uma cadeia de ferramentas: cada
 dependência é uma coisa que quebra sozinha em seis meses, e este site precisa
 continuar de pé sem manutenção.
 
@@ -21,6 +21,9 @@ seguir também.
 index.html    início, produtos, como trabalhamos, contato
 clarim.html    a página do Clarim, com os links do app
 lumus.html    só redireciona: o produto se chamou Lumus até 07/09/2026
+404.html      a página de erro; o Pages a serve em qualquer caminho que não existe
+sitemap.xml   as duas páginas (o lumus.html fica de fora)
+robots.txt    libera tudo e aponta para o sitemap
 style.css     a folha, comentada
 fontes/       os .woff2, a licença OFL e o LEIA-ME
 CNAME         elcamargo.com.br
@@ -131,13 +134,15 @@ preto.
    `elcamargo.com.br` de novo, **Save**. Isso reenfileira a emissão. Só depois
    a caixa *Enforce HTTPS* fica clicável.
 
-## Antes de publicar
+## Ao mexer no texto
 
-- [ ] `contato@elcamargo.com.br` precisa existir. As duas páginas e o rodapé
-      apontam para ele, e a ficha da Play Store vai exibi-lo em público.
-      Encaminhamento grátis pelo Cloudflare Email Routing, ou caixa real no
-      plano gratuito do Zoho Mail.
-- [ ] Conferir o texto do `index.html`: ele fala pela empresa.
+- `contato@elcamargo.com.br` é um alias no Zoho (ver o repositório de operação,
+  `dominio-dns-email.md`). As páginas, o rodapé e a ficha da Play apontam para ele.
+- O `index.html` fala pela empresa: antes de afirmar algo sobre um produto,
+  confira que ele vale hoje (ver "Os produtos citados", abaixo).
+- **Open Graph sem imagem.** As duas páginas têm `og:title`, `og:description` e
+  `og:url`, mas não `og:image`, porque o site não usa imagem nenhuma. A prévia de
+  link sai só com texto.
 
 ## Os produtos citados
 
@@ -146,7 +151,7 @@ preto.
 | Clarim — Kids Game Hub | [`ElCamargo/KidsGameHub`](https://github.com/ElCamargo/KidsGameHub) | na Google Play (`br.com.elcamargo.clarim`) e no navegador, código público |
 | elcamargo-ai-flow | [`ElCamargo/elcamargo-ai-flow`](https://github.com/ElCamargo/elcamargo-ai-flow) | publicado, MIT |
 | Proteger os Doces | `ElCamargo/CandyDefense` | privado, no ar em `protegerosdoces.elcamargo.com.br` (Cloudflare Pages), fora da loja |
-| Collectors Community | `ElCamargo/CollectorsCommunityApp` | privado, beta Android em preparação |
+| Collectors Community | `ElCamargo/CollectorsCommunityApp` | privado, v1 em piloto privado no Android; v2 (catálogo visual) planejada |
 
 O site só afirma o que existe: o Collectors aparece sem data, porque é o que
 ele é hoje, e o Proteger os Doces não tem botão de loja porque não está em
